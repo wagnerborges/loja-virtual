@@ -1,0 +1,27 @@
+package com.dev.backend.models;
+
+import java.util.Date;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Data;
+
+
+@Table(name = "permissao")
+@Data
+public class Permissao {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String nome;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataCriacao;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataAtualizacao;
+}
