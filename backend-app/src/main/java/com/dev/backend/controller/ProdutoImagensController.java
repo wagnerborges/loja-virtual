@@ -1,9 +1,10 @@
 package com.dev.backend.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.dev.backend.models.Permissao;
-import com.dev.backend.services.PermissaoService;
+import com.dev.backend.models.ProdutoImagens;
+import com.dev.backend.services.ProdutoImagensService;
 
 import java.util.List;
 
@@ -16,35 +17,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@RequestMapping("/api/permissao")
-public class PermissaoController {
-
+@RequestMapping("/api/produto-imagens")
+public class ProdutoImagensController {
+    
     @Autowired
-    private PermissaoService permissaoService;
+    private ProdutoImagensService produtoImagensService;
 
     @GetMapping("/")        
-    public List<Permissao> listarTodos() {
-        return permissaoService.buscarTodos();
+    public List<ProdutoImagens> listarTodos() {
+        return produtoImagensService.listarTodos();
     }
     
     @PostMapping("/")
-    public Permissao inserir(@RequestBody Permissao marca){
-        return permissaoService.inserir(marca);
+    public ProdutoImagens inserir(@RequestParam("idProduto") Long idProduto, @RequestParam("file") MultipartFile file){
+        return produtoImagensService.inserir(idProduto, file);
 
     }
 
     @PutMapping("/")    
-    public Permissao alterar(@RequestBody Permissao marca) {
-        return permissaoService.alterar(marca);
+    public ProdutoImagens alterar(@RequestBody ProdutoImagens produto) {
+        return produtoImagensService.alterar(produto);
 
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-        permissaoService.excluir(id);
+        produtoImagensService.excluir(id);
         return ResponseEntity.ok().build();
-    }
-    
+    }    
 }

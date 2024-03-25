@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dev.backend.models.Produto;
@@ -15,6 +16,7 @@ import com.dev.backend.models.ProdutoImagens;
 import com.dev.backend.repositories.ProdutoImagensRepository;
 import com.dev.backend.repositories.ProdutoRepository;
 
+@Service
 public class ProdutoImagensService {
     @Autowired
     private ProdutoImagensRepository produtoImagensRepository;
@@ -40,6 +42,10 @@ public class ProdutoImagensService {
 
                 produtoImagens.setNome(nomeImagem);
             }
+
+            produtoImagens.setProduto(produto);
+            produtoImagens.setDataCriacao(new Date());
+            produtoImagens = produtoImagensRepository.saveAndFlush(produtoImagens);
 
         } catch (IOException exception) {
             exception.printStackTrace();
