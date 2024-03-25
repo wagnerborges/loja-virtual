@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.dev.backend.models.Marca;
 
-public interface MarcaRepository extends JpaRepository<Long, Marca> {
+public interface MarcaRepository extends JpaRepository<Marca, Long> {
     
 }
